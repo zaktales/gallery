@@ -1,5 +1,5 @@
 pipeline {
-     agent { dockerfile true }
+     agent any { dockerfile true }
         environment {
         HOME = "${env.WORKSPACE}"
     }
@@ -10,11 +10,9 @@ pipeline {
             }
         }
      }
-     stages {
         stage('Build') { 
             steps {
                 sh 'npm install' 
             }
         }
-    }
 }
