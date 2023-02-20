@@ -9,5 +9,10 @@ pipeline {
                 git 'https://github.com/zaktales/gallery'
             }
         }
+        stage('Build') {
+            steps {
+                sh 'npm install'
+            }
+        }
      }
 }
