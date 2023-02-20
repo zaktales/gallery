@@ -16,7 +16,7 @@ pipeline {
         }
         stage('Tests') {
             steps { 
-                sh 'npm test'
+                sh 'npm run int-test'
             }
         }
          stage('Deploy to Heroku') {
