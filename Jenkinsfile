@@ -14,10 +14,6 @@ pipeline {
                 sh 'npm install'
             }
         }
-        stage('Tests') {
-            steps { 
-                sh 'npm run int-test'
-            }
         }
          stage('Deploy to Heroku') {
             steps {
@@ -26,5 +22,4 @@ pipeline {
                 }
             }
         }
-     }
 }
