@@ -1,8 +1,5 @@
 pipeline {
      agent any
-     tools { 
-        gradle "Gradle-6"
-        }
      stages { 
         stage('clone repository') {
             steps { 
@@ -10,4 +7,11 @@ pipeline {
             }
         }
      }
+     stages {
+        stage('Build') { 
+            steps {
+                sh 'npm install' 
+            }
+        }
+    }
 }
