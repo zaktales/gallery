@@ -37,5 +37,10 @@ pipeline {
             emailext attachLog: true, body: 'Jenkins Build Status', subject: 'Jenkins Build Status', to: 'zaktales@gmail.com'
             }
         } 
+        stage ('Slack') {
+        steps {
+            slackSend botUser: true, channel: 'project', message: 'Message from Jenkins', teamDomain: 'zachariaip1', tokenCredentialId: 'SLACK'
+            }
+        } 
     }
 }
