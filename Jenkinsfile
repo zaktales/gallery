@@ -34,7 +34,7 @@ pipeline {
         } 
         stage ('Slack') {
         steps {
-            slackSend : true, channel: 'project', message: 'Message from Jenkins', teamDomain: 'zachariaip1', tokenCredentialId: 'SLACK'
+            slackSend botUser: true, channel: 'project', message: 'Message from Jenkins', teamDomain: 'zachariaip1', tokenCredentialId: 'SLACK'
             }
         } 
     }
