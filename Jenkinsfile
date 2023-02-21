@@ -14,6 +14,11 @@ pipeline {
                 sh 'npm install'
             }
         }
+        stage('Ok') {
+            steps {
+                echo "OK"
+            }
+        }
          stage('Deploy to Heroku') {
             steps {
                 withCredentials([usernameColonPassword(credentialsId: 'heroku', variable: 'HEROKU_CREDENTIALS' )]){
@@ -21,5 +26,11 @@ pipeline {
                 }
             }
         }
+        
      }
+    post {
+        always {
+            emailext body: 'Email from Jenkins', recipientProviders: [[$class: 'DevelopersRecipientProvider'], [$class: 'RequesterRecipientProvider']], subject: 'Test Subject', to: 'zaktales@gmail.com'
+        }
+    }
 }
