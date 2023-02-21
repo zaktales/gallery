@@ -11,6 +11,7 @@ pipeline {
         }
         stage('Tests') {
             steps {
+                sh 'npm install mocha chai --save-dev'
                 sh 'npm test'
             }
         }
