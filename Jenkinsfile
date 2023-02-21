@@ -28,8 +28,8 @@ pipeline {
             }
         }
        stage ('Email') {
-        steps {
-            emailext attachLog: true, body: 'Jenkins Build Status', subject: 'Jenkins Build Status', to: 'zaktales@gmail.com'
+            steps {
+                emailext : true, body: 'Jenkins Build Status', subject: 'Jenkins Build Status', to: 'zaktales@gmail.com'
             }
         } 
         stage ('Slack') {
