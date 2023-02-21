@@ -28,12 +28,9 @@ pipeline {
         }
         
      }
-     environment {
-        EMAIL_TO = 'zaktales@gmail.com'
-    }
     post {
         always {
-            emailext body: 'Email from Jenkins', recipientProviders: [[$class: 'DevelopersRecipientProvider'], [$class: 'RequesterRecipientProvider']], subject: 'Test'
+            emailext body: 'Email from Jenkins', recipientProviders: [[$class: 'DevelopersRecipientProvider'], [$class: 'RequesterRecipientProvider']], subject: 'Test Subject', to: 'zaktales@gmail.com'
         }
     }
 }
