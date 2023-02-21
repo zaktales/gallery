@@ -31,11 +31,10 @@ pipeline {
                 }
             }
         }
-        
-     }
-    post {
-        always {
-            emailext body: 'Email from Jenkins', recipientProviders: [[$class: 'DevelopersRecipientProvider'], [$class: 'RequesterRecipientProvider']], subject: 'Test Subject', to: 'zaktales@gmail.com'
-        }
+       stage ('Email') {
+        steps {
+            emailext attachLog: true, body: 'Jenkins Build Status', subject: 'Jenkins Build Status', to: 'zaktales@gmail.com'
+            }
+        } 
     }
 }
