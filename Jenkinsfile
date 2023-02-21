@@ -29,7 +29,7 @@ pipeline {
         }
        stage ('Email') {
             steps {
-                emailext: true, body: 'Jenkins Build Status', subject: 'Jenkins Build Status', to: 'zaktales@gmail.com'
+                emailext: true, body: subject: currentBuild.currentResult + " : " + env.JOB_NAME, subject: 'Jenkins Build Status', to: 'zaktales@gmail.com'
             }
         } 
         stage ('Slack') {
