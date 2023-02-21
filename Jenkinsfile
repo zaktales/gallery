@@ -21,5 +21,11 @@ pipeline {
                 }
             }
         }
+        
      }
+     post {
+        success {
+            mail to: zaktales@gmail.com, subject: ‘The Pipeline successfully ran the Build :(‘
+    }
+  }
 }
