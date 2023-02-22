@@ -1,5 +1,18 @@
 pipeline {
      agent any
+     environment {
+        EMAIL_BODY = 
+        """
+            <p>EXECUTED: Job <b>\'${env.JOB_NAME}:${env.BUILD_NUMBER})\'</b></p>
+            <p>
+            View console output at 
+            "<a href="${env.BUILD_URL}">${env.JOB_NAME}:${env.BUILD_NUMBER}</a>"
+            </p> 
+        """
+        EMAIL_SUBJECT_SUCCESS = "Status: 'SUCCESS' -Job \'${env.JOB_NAME}:${env.BUILD_NUMBER}\'" 
+        EMAIL_SUBJECT_FAILURE = "Status: 'FAILURE' -Job \'${env.JOB_NAME}:${env.BUILD_NUMBER}\'" 
+        EMAIL_RECIPIENT = 'zaktales@gmail.com'
+    }
         tools {
             nodejs "NODEJS"
             }
@@ -40,5 +53,17 @@ pipeline {
             slackSend botUser: true, channel: 'project', message: 'Message from Jenkins', teamDomain: 'zachariaip1', tokenCredentialId: 'SLACK'
             }
         } 
+    }
+    post {
+        success {
+            mail to: EMAIL_RECIPIENT,
+            body: EMAIL_BODY, 
+            subject: EMAIL_SUBJECT_SUCCESS
+        }
+        failure {
+            mail to: EMAIL_RECIPIENT,
+            body: EMAIL_BODY, 
+            subject: EMAIL_SUBJECT_FAILURE 
+        }
     }
 }
